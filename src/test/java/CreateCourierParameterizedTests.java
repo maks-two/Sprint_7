@@ -47,7 +47,7 @@ public class CreateCourierParameterizedTests {
     @Test
     @DisplayName("Create courier negative data")
     @Description("Создание курьера без необходимых данных в запросе")
-    public void CreateCourierNegativeDataTest(){
+    public void createCourierNegativeDataTest(){
 
         courier = new Courier(login,password,firstName);
 

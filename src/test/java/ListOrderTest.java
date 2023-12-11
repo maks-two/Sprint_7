@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import static order.OrderGenerator.randomOrder;
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ListOrderTest {
@@ -37,6 +38,9 @@ public class ListOrderTest {
 
         assertThat("Список заказов пустой",
                 response.extract().path("orders"),notNullValue());
+
+        assertThat("У заказа есть трэк",
+                 trackId, isA(Integer.class));
 
     }
 
