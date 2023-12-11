@@ -42,7 +42,7 @@ public class CreateCourierTests {
     @Test
     @DisplayName("Create two same courier")
     @Description("Проверка возмоожности создания двух одинаковых курьеров")
-    public void TwoSameCourierCreateTest(){
+    public void twoSameCourierCreateTest(){
 
         ValidatableResponse responseFirst = courierClient.create(courier);
 

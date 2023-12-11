@@ -49,7 +49,7 @@ public class CreateOrderTests {
     @Test
     @DisplayName("Create order")
     @Description("Проверка возможности создания заказа c выбором цвета")
-    public void CreateOrderTest(){
+    public void createOrderTest(){
 
         orders = randomOrder();
 
