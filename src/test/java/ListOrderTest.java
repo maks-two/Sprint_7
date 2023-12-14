@@ -7,7 +7,7 @@ import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.util.List;
 import static order.OrderGenerator.randomOrder;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -20,34 +20,30 @@ public class ListOrderTest {
     private int trackId;
 
     @Before
-    public void setup(){
+    public void setup() {
         orderClient = new OrderClient();
         orders = randomOrder();
-        trackId = orderClient.create(orders).extract().path("track");
     }
-
     @Test
     @DisplayName("Get list order")
     @Description("Проверка получения списка заказов")
-    public void getListOrdersTest(){
+    public void getListOrdersTest() {
+        trackId = orderClient.create(orders).extract().path("track");
 
         ValidatableResponse response = orderClient.get();
 
         assertThat("Статус код неверный при получении списка заказов",
                 response.extract().statusCode(), equalTo(HttpStatus.SC_OK));
 
+        List<String> responseList = response.extract().path("orders");
         assertThat("Список заказов пустой",
-                response.extract().path("orders"),notNullValue());
+                responseList.size() > 0 );
 
-        assertThat("У заказа есть трэк",
-                 trackId, isA(Integer.class));
-
+        assertThat("У заказа нет трэка",
+                trackId , isA(Integer.class));
     }
-
     @After
     public void tearDown() {
-
         orderClient.delete(trackId);
-
     }
 }
